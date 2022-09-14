@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+//if you are importing JS file you should also put js extension in express server
+import authRouter from '../api/routes/auth.js'
 const app = express()
 // from now we are able to reach our data
 dotenv.config();
@@ -12,9 +14,7 @@ const connect = async () => {
         throw error;
     }
 }
-app.get("/",(req,res)=>{
-    res.send("Hello First Request")
-})
+// if you want to look your connection in editor
 mongoose.connection.on("disconnected",()=>{
     console.log("MongoDb disconnected!")
 })
