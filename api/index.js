@@ -3,9 +3,9 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 //if you are importing JS file you should also put js extension in express server
 import authRouter from '../api/routes/auth.js'
-import usersRouter from '../api/routes/users'
-import hotelsRouter from '../api/routes/hotels'
-import roomsRouter from '../api/routes/rooms'
+import usersRouter from '../api/routes/users.js'
+import hotelsRouter from '../api/routes/hotels.js'
+import roomsRouter from '../api/routes/rooms.js'
 const app = express()
 // from now we are able to reach our data
 dotenv.config();
@@ -18,6 +18,8 @@ const connect = async () => {
     }
 }
 //middleware
+app.use(express.json())
+
 app.use("/api/auth",authRouter)
 app.use("/api/users",usersRouter)
 app.use("/api/rooms",roomsRouter)
