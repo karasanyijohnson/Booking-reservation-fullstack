@@ -20,15 +20,28 @@ const connect = async () => {
 //middleware
 app.use(express.json())
 
-app.use("/api/auth",authRouter)
-app.use("/api/users",usersRouter)
-app.use("/api/rooms",roomsRouter)
-app.use("/api/hotels",hotelsRouter)
+app.use("/api/auth", authRouter)
+app.use("/api/users", usersRouter)
+app.use("/api/rooms", roomsRouter)
+app.use("/api/hotels", hotelsRouter)
+app.use((err,req, res, next) => {
+    const errStatus=err.status || 500;
+    const errMessage=err.message || "Something went wrong"
+   return res.status(errStatus).json(
+    {
+        success:false,
+        status: errStatus,
+        message:errMessage,
+        stack:err.stack
+
+    }
+    )
+})
 // if you want to look your connection in editor
-mongoose.connection.on("disconnected",()=>{
+mongoose.connection.on("disconnected", () => {
     console.log("MongoDb disconnected!")
 })
-mongoose.connection.on("connected",()=>{
+mongoose.connection.on("connected", () => {
     console.log("MongoDb connected!")
 })
 
