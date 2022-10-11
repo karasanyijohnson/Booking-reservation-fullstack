@@ -8,8 +8,7 @@ export const register = async (req, res, next) => {
             password:req.body.password
         })
         await newUser.save()
-        // Stopped at 00:48:46
-
+        res.status(200).send("User has been Created.")
     } catch (err) {
         next(err)
     }
