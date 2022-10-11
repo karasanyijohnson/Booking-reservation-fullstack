@@ -5,7 +5,8 @@ import mongoose from "mongoose";
 import authRouter from '../api/routes/auth.js'
 import usersRouter from '../api/routes/users.js'
 import hotelsRouter from '../api/routes/hotels.js'
-import roomsRouter from '../api/routes/rooms.js'
+import roomsRouter from '../api/routes/rooms.js';
+import cookieParser from "cookie-parser";
 const app = express()
 // from now we are able to reach our data
 dotenv.config();
@@ -18,6 +19,7 @@ const connect = async () => {
     }
 }
 //middleware
+app.use(cookieParser())
 app.use(express.json())
 
 app.use("/api/auth", authRouter)
