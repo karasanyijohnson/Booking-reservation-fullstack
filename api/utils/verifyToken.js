@@ -14,7 +14,7 @@ export const verifyToken = (req, res, next) => {
 }
 
 export const verifyUser =(req,res,next)=>{
-    verifyToken(req,res,()=>{
+    verifyToken(req,res,next,()=>{
         // it means only user and admin can delete this account
         if(req.user.id===req.params.id ||req.user.isAdmin){
             next()
@@ -25,7 +25,7 @@ export const verifyUser =(req,res,next)=>{
 }
 
 export const verifyAdmin =(req,res,next)=>{
-    verifyToken(req,res,()=>{
+    verifyToken(req,res,next,()=>{
         // only request user is Admin
         if(req.user.isAdmin){
             next()
