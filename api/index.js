@@ -27,6 +27,8 @@ app.use("/api/users", usersRouter)
 app.use("/api/rooms", roomsRouter)
 app.use("/api/hotels", hotelsRouter)
 app.use((err,req, res, next) => {
+    // Req: it is whatever comes from the user
+    // Res: what we are sending to the users as response
     const errStatus=err.status || 500;
     const errMessage=err.message || "Something went wrong"
    return res.status(errStatus).json(
