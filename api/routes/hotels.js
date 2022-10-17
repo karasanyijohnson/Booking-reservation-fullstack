@@ -1,6 +1,8 @@
 import express from "express";
 import { createHotel, getHotel, getHotels, updateHotel,deleteHotel } from "../controller/hotel.js";
 import { verifyAdmin } from "../utils/verifyToken.js";
+
+// HOTEL ROUTERS
 const router = express.Router();
 //CREATE
 router.post('/', verifyAdmin,createHotel);
