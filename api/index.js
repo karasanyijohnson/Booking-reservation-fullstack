@@ -7,6 +7,7 @@ import usersRouter from '../api/routes/users.js'
 import hotelsRouter from '../api/routes/hotels.js'
 import roomsRouter from '../api/routes/rooms.js';
 import cookieParser from "cookie-parser";
+import cors from 'cors'
 const app = express()
 // from now we are able to reach our data
 dotenv.config();
@@ -19,7 +20,8 @@ const connect = async () => {
     }
 }
 //middleware
-app.use(cookieParser())
+app.use(cookieParser());
+app.use(cors())// it is not important for now because we are using proxy
 app.use(express.json())
 
 app.use("/api/auth", authRouter)
